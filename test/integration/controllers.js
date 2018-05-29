@@ -104,4 +104,14 @@ describe('Profile controller', () => {
       .get('/api/profile')
       .expect(401);
   });
+
+  it('should logout existing user', () => {
+    return request(app)
+      .post('/api/logout')
+      .set('Authorization', 'Bearer ' + _token)
+      .expect(200)
+      .then((data) => {
+        assert.equal(data.body.status, 'OK');
+      });
+  });
 });
